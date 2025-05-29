@@ -1,32 +1,23 @@
-body {
-  background-color: yellow;
-}
-
-.test {
-  list-style-type: none;
-}
-
-.test p {
-  margin: 5px;
-  padding: 10px;
-  background-color: blue;
-  color: white;
-}
-
-.test p a {
-  color: white;
-  text-decoration: none;
-}
-
-.test {
-  display: flex;
-
-  p {
-    font-size: 16px;
+// 初期設定
+@use './foundation/reset';
+@use './foundation/base';
 
 
-    a {
-      color: blue;
-    }
-  }
-}
+// 共通パーツ
+@use './object/component';
+
+
+// ページ共通のレイアウト
+@use './layout/header';
+@use './layout/footer';
+
+
+// 特定のセクションやエリア
+@use './object/project/frontPage';
+@use './object/project/single';
+@use './object/project/archive';
+@use './object/project/page';
+
+
+// 強制的に上書き
+@use './object/utility';

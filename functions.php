@@ -32,3 +32,23 @@ wp_enqueue_style('swiper-css', 'https://unpkg.com/swiper/swiper-bundle.min.css')
 wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', array(), false, true);
 // アイキャッチ画像の有効化
 add_theme_support('post-thumbnails');
+// 「news」投稿のURLを「/news/ID」に変更
+function custom_news_post_link($post_link, $post)
+{
+	if ($post->post_type === 'news') {
+		return home_url('/news/' . $post->ID);
+	}
+	return $post_link;
+}
+add_filter('post_type_link', 'custom_news_post_link', 10, 2);
+
+// 「/news/ID」のURLを正しく表示させるためのルールを追加
+function custom_news_rewrite_rules()
+{
+	add_rewrite_rule(
+		'^news/([0-9]+)/?$',
+		'index.php?post_type=news&p=$matches[1]',
+		'top'
+	);
+}
+add_action('init', 'custom_news_rewrite_rules');

@@ -33,7 +33,7 @@ wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper/swiper-bundle.min.js', 
 // アイキャッチ画像の有効化
 add_theme_support('post-thumbnails');
 // 「news」投稿のURLを「/news/ID」に変更
-function custom_news_post_link($post_link, $post)
+function custom_nsews_post_link($post_link, $post)
 {
 	if ($post->post_type === 'news') {
 		return home_url('/news/' . $post->ID);

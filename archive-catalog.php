@@ -4,13 +4,16 @@
     <div class="inner">
         <div class="content">
             <?php
-            $post_type = get_post_type_object(get_post_type());
-            $section_title = $post_type->rewrite['slug'];
+            $post_type = get_query_var('post_type') ? get_query_var('post_type') : get_post_type();
+            $post_type_obj = get_post_type_object($post_type);
+
+            $section_title = $post_type_obj && isset($post_type_obj->rewrite['slug']) ? $post_type_obj->rewrite['slug'] : '';
             if (ctype_lower($section_title)) {
                 $section_title = ucfirst($section_title);
             }
             ?>
             <h1 class="section_title"><?php echo $section_title; ?></h1>
+
 
             <div class="catalog_inner">
                 <div class="catalog_archive">
